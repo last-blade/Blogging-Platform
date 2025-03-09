@@ -1,10 +1,10 @@
-import { User } from "../../models/user.model";
-import { apiError, apiResponse, asyncHandler } from "../allImports";
+import { User } from "../../models/user.model.js";
+import { apiError, apiResponse, asyncHandler } from "../allImports.js";
 
 const registerUser = asyncHandler(async (request, response) => {
     const {fullname, username, password, email, avatar} = request.body;
     
-    if([!fullname, !username, !password, !email].some((inputField) => inputField.trim() === "")){
+    if([!fullname, !username, !password, !email].some((inputField) => inputField.trim === "")){
         throw new apiError(404, "All fields are required")
     }
 
