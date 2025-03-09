@@ -8,7 +8,7 @@ const registerUser = asyncHandler(async (request, response) => {
         throw new apiError(404, "All fields are required")
     }
 
-    const foundUser = User.findOne({
+    const foundUser = await User.findOne({
         $or: [{email}, {username}]
     });
 
