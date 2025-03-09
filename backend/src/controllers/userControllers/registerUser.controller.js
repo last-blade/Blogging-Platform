@@ -33,4 +33,6 @@ const registerUser = asyncHandler(async (request, response) => {
         new apiResponse(200, user, "User registered successfully.")
     );
 
-})
+});
+
+export {registerUser}
