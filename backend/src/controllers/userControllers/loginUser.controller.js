@@ -1,5 +1,5 @@
-import { User } from "../../models/user.model";
-import { apiError, apiResponse, asyncHandler } from "../allImports";
+import { User } from "../../models/user.model.js";
+import { apiError, apiResponse, asyncHandler } from "../allImports.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
     const user = await User.findById(userId);
