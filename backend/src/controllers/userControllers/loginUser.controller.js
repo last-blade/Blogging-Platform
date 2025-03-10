@@ -1,17 +1,5 @@
+import { generateAccessAndRefreshToken } from "../../utils/generateAccessTokenAndRefreshToken.js";
 import { apiError, apiResponse, asyncHandler, User } from "../allImports.js";
-
-const generateAccessAndRefreshToken = async (userId) => {
-    const user = await User.findById(userId);
-
-    const accessToken = await user.generateAccessToken();
-    const refreshToken = await user.generateRefreshToken();
-
-    user.refreshToken = refreshToken;
-
-    await user.save({validateBeforeSave: false})
-
-    return {accessToken, refreshToken}
-}
 
 const loginUser = asyncHandler(async (request, response) => {
     const {email, username, password} = request.body;
@@ -53,4 +41,4 @@ const loginUser = asyncHandler(async (request, response) => {
     )
 });
 
-export {loginUser, generateAccessAndRefreshToken}
+export {loginUser}
