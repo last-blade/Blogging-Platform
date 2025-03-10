@@ -12,8 +12,6 @@ const loginUser = asyncHandler(async (request, response) => {
         $or: [{email}, {username}]
     });
 
-    console.log("Found user", foundUser)
-
     if(!foundUser){
         throw new apiError(400, "User with this email or username does not exists.")
     };
