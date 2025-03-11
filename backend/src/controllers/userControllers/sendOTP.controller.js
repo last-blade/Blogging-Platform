@@ -29,4 +29,6 @@ const sendOTP = asyncHandler(async (request, response) => {
     
     return response.status(200)
     .json(200, {}, "OTP sent successfully.");
-})
+});
+
+export {sendOTP}
