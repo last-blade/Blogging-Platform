@@ -4,6 +4,7 @@ import { loginUser } from "../controllers/userControllers/loginUser.controller.j
 import { authentication } from "../middlewares/authentication.middleware.js";
 import { logoutUser } from "../controllers/userControllers/logoutUser.controller.js";
 import { updateName } from "../controllers/userControllers/updateName.controller.js";
+import { updateEmail } from "../controllers/userControllers/updateEmail.controller.js";
 
 const router = Router();
 
@@ -12,6 +13,7 @@ router.route("/login").post(loginUser);
 router.route("/logout").post(authentication, logoutUser);
 
 //Update controllers
-router.route("/update-fullname").patch(authentication, updateName)
+router.route("/update-fullname").patch(authentication, updateName);
+router.route("/update-email").patch(authentication, updateEmail);
 
 export default router;
