@@ -45,7 +45,12 @@ const userSchema = new Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Blog",
       }
-    ]
+    ],
+
+    OTP: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );
