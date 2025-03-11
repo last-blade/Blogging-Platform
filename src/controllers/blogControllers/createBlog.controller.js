@@ -4,7 +4,7 @@ import { apiError, apiResponse, asyncHandler, User } from "../allImports.js";
 const createBlog = asyncHandler(async (request, response) => {
     try {
         const {blogName, blogContent} = request.body;
-        console.log("Blogname", blogName);
+        // console.log("Blogname", blogName);
 
         const createdBlog = await Blog.create({
             blogName,
@@ -12,8 +12,8 @@ const createBlog = asyncHandler(async (request, response) => {
         });
 
         const updatedUser = await User.findByIdAndUpdate(request?.user.id, {
-            $set: {
-                blog: createdBlog,
+            $push: {
+                blog: createdBlog._id,
             }
         }, {new: true}).select("-password -refreshToken")
 
@@ -22,7 +22,7 @@ const createBlog = asyncHandler(async (request, response) => {
         console.log("createdBlog", createdBlog)
 
         return response.status(200)
-        .json(new apiResponse(200, updatedUser, "Blog Created successfully."))
+        .json(new apiResponse(200, createdBlog, "Blog Created successfully."))
     } catch (error) {
         throw new apiError(400, `Error while creating blog ${error.message}`)
     }
