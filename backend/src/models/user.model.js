@@ -39,8 +39,6 @@ const userSchema = new Schema(
     refreshToken: {
       type: String,
     },
-<<<<<<< HEAD
-=======
 
     blog: [
       {
@@ -53,7 +51,6 @@ const userSchema = new Schema(
       type: Number,
       required: true,
     },
->>>>>>> 267147d6eed4b7b772504f6b39477461ba23f3d4
   },
   { timestamps: true }
 );
