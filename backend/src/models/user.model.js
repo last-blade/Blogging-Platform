@@ -39,6 +39,21 @@ const userSchema = new Schema(
     refreshToken: {
       type: String,
     },
+<<<<<<< HEAD
+=======
+
+    blog: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Blog",
+      }
+    ],
+
+    OTP: {
+      type: Number,
+      required: true,
+    },
+>>>>>>> 267147d6eed4b7b772504f6b39477461ba23f3d4
   },
   { timestamps: true }
 );
