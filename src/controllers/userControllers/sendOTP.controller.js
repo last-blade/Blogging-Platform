@@ -7,7 +7,7 @@ const sendOTP = asyncHandler(async (request, response) => {
     const OTP = Math.floor(1000 + Math.random() * 9000);
     console.log(OTP);
 
-    sendMail(email, "Your EMail OTP for registration on PixelPen", `Please find your One Time Password (OTP) ${OTP} and PLease don't share this OTP with others.`)
+    sendMail(email, "Your Email OTP for registration on PixelPen", `Please find your One Time Password (OTP) ${OTP} and Please don't share this OTP with others.`)
 
     
 })
