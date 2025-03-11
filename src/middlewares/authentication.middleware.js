@@ -22,13 +22,13 @@ const authentication = asyncHandler(async (request, response, next) => {
             const foundUser = await User.findById(userId).select("-password -refreshToken");
         
             if(!foundUser){
-                throw new apiError(404, "Invalid access token")
+                throw new apiError(404, "Please login")
             }
         
             request.user = foundUser;
             next();
     } catch (error) {
-        throw new apiError(404, "Invalid access token")
+        throw new apiError(404, "PLease login")
     }
 });
 
