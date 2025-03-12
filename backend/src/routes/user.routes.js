@@ -7,6 +7,7 @@ import { updateName } from "../controllers/userControllers/updateName.controller
 import { updateEmail } from "../controllers/userControllers/updateEmail.controller.js";
 import { sendOTP } from "../controllers/userControllers/sendOTP.controller.js";
 import { verifyOTP } from "../controllers/userControllers/verifyOTP.controller.js";
+import { updateUsername } from "../controllers/userControllers/updateUsername.controller.js";
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.route("/verify-otp").post(verifyOTP);
 //Update controllers
 router.route("/update-fullname").patch(authentication, updateName);
 router.route("/update-email").patch(authentication, updateEmail);
+router.route("/update-username").patch(authentication, updateUsername);
 
 export default router;
