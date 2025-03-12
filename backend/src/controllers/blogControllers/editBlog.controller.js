@@ -1,13 +1,19 @@
 import { Blog } from "../../models/blog.model.js";
-import { apiError, asyncHandler } from "../allImports.js";
+import { apiError, apiResponse, asyncHandler } from "../allImports.js";
 
 const editBlog = asyncHandler(async (request, response) => {
     try {
-        const {blogContent} = request.body
+        const {blogId, blogContent} = request.body
         
+        if(!blogId){
+            throw new apiError(400, "Blog ID is required!");
+        }
+
         if(!blogContent){
             throw new apiError(400, "Blog body can not be empty!")
         }
+
+        console.log(blogContent)
 
         const foundUser = request?.user;
 
@@ -16,14 +22,16 @@ const editBlog = asyncHandler(async (request, response) => {
         }
         const userId = foundUser.id;
 
-        await Blog.findByIdAndUpdate(userId, {
+        console.log("userid", userId)
+
+        const updatedBlog = await Blog.findByIdAndUpdate({blogId: blogId, author: userId} , {
             $set: {
-                blogContent: blogContent,
+                blogContent: blogContent
             }
         }, {new: true});
 
         return response.status(200)
-        .json(201, {}, "Blog updated!")
+        .json(new apiResponse(201, updatedBlog, "Blog updated!"))
 
     } catch (error) {
         throw new apiError(500 || error.code, error.message)
