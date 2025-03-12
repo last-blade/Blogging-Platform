@@ -11,8 +11,6 @@ const verifyOTP = asyncHandler(async (request, response) => {
 
     const foundUser = await OTP.findOne({email});
 
-    console.log("user", foundUser)
-
     if(!foundUser){
         throw new apiError(400, "OTP expired, send OTP again.")
     }
