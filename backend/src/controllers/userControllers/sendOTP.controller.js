@@ -28,9 +28,14 @@ const sendOTP = asyncHandler(async (request, response) => {
         */
     );
 
-    request.email = email;
+    const options = {
+        httpOnly: true,
+        secure: true,
+        maxAge: 5 * 60 * 1000,
+    }
     
     return response.status(200)
+    .cookie("Email", email, options)
     .json(
         new apiResponse(200, {}, "OTP sent successfully.")
     );
