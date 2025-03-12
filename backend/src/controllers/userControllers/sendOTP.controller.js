@@ -27,7 +27,8 @@ const sendOTP = asyncHandler(async (request, response) => {
         { new: true, upsert: true } /* so 'upsert' is using because the otp im sending to an email does not exists in database, that's why I am using upsert
         */
     );
-    
+
+    request.email = email;
     
     return response.status(200)
     .json(
