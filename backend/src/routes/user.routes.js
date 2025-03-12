@@ -6,13 +6,17 @@ import { logoutUser } from "../controllers/userControllers/logoutUser.controller
 import { updateName } from "../controllers/userControllers/updateName.controller.js";
 import { updateEmail } from "../controllers/userControllers/updateEmail.controller.js";
 import { sendOTP } from "../controllers/userControllers/sendOTP.controller.js";
+import { verifyOTP } from "../controllers/userControllers/verifyOTP.controller.js";
 
 const router = Router();
 
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 router.route("/logout").post(authentication, logoutUser);
+
+//OTP Routes
 router.route("/send-otp").post(sendOTP);
+router.route("/verify-otp").post(verifyOTP);
 
 //Update controllers
 router.route("/update-fullname").patch(authentication, updateName);
