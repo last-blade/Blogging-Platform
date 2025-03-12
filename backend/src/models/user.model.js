@@ -46,11 +46,6 @@ const userSchema = new Schema(
         ref: "Blog",
       }
     ],
-
-    OTP: {
-      type: Number,
-      required: true,
-    },
   },
   { timestamps: true }
 );
