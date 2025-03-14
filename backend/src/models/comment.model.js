@@ -10,8 +10,10 @@ const commentSchema = new Schema({
         ref: "User",
     },
 
-    blogId: {
+    commentedBlog: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Blog",
     },
-}, {timestamps: true})
+}, {timestamps: true});
+
+export const Comment = mongoose.model("Comment", commentSchema);
