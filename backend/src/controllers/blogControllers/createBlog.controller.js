@@ -9,6 +9,7 @@ const createBlog = asyncHandler(async (request, response) => {
         const createdBlog = await Blog.create({
             blogName,
             blogContent,
+            blogOwner: request?.user.id,
         });
 
         const updatedUser = await User.findByIdAndUpdate(request?.user.id, {
