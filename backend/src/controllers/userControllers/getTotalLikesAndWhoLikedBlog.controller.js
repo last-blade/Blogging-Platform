@@ -1,7 +1,7 @@
 import { Like } from "../../models/like.model.js";
 import { apiError, asyncHandler } from "../allImports.js";
 
-const getTotalLikesAndWhoLiked = asyncHandler(async (request, response) => {
+const getTotalLikesAndWhoLikedBlog = asyncHandler(async (request, response) => {
     // ab hum yahan par karenge ki, We want to find all likes related to a specific blog, so we'll match "likedBlog" with "blogId".
     const {blogId} = request.params;
 
@@ -41,13 +41,27 @@ const getTotalLikesAndWhoLiked = asyncHandler(async (request, response) => {
 
         {
             $sort: {
-                createdAt: -1,
+                createdAt: -1, // "createdAt" jo hai timestamps wala hai.
+            }
+        },
+
+        /*
+            What is $project?
+            $project is used to show only specific fields.
+            We'll hide unnecessary fields and only show total likes and user details. ✅
+        */
+
+        {
+            $project: { //see comment-2
+                _id: 0,
+                whoLikedBlog: 1,
+                userDetails: 1,
             }
         }
     ])
 });
 
-export {getTotalLikesAndWhoLiked}
+export {getTotalLikesAndWhoLikedBlog}
 
 /*
 ➡️Comment-1 
@@ -72,5 +86,22 @@ Example lete hain ek real:
     ]
 }
 
+
+*/
+
+
+/*
+➡️Comment-2
+Final Output below:
+
+{
+   totalLikes: 4,
+   userDetails: [
+      { name: "Prashant", profilePic: "🔥" },
+      { name: "Raj", profilePic: "😍" },
+      { name: "Aman", profilePic: "😎" },
+      { name: "John", profilePic: "😊" }
+   ]
+}
 
 */
