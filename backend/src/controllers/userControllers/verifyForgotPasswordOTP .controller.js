@@ -1,4 +1,3 @@
-import { OTP } from "../../models/otp.model.js";
 import { verifyOtpHelper } from "../../utils/verifyOtpHelper.js";
 import { apiError, apiResponse, asyncHandler } from "../allImports.js";
 
@@ -16,4 +15,6 @@ const verifyForgotPasswordOTP  = asyncHandler(async (request, response) => {
     .json(
         new apiResponse(200, {}, "OTP verified.")
     );
-})
+});
+
+export {verifyForgotPasswordOTP}
