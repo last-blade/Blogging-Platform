@@ -1,0 +1,29 @@
+import { sendMail } from "./sendEmail.js";
+import { OTP } from "../models/otp.model.js";
+
+const generateOTP = () => {
+    return Math.floor(1000 + Math.random() * 9000);
+};
+
+const sendOtpToEmail = async (email, subject) => {
+    const existingOTP = await OTP.findOne({ email });
+
+    if (existingOTP) {
+        throw new Error("Please wait before requesting a new OTP.");
+    }
+
+    const generatedOTP = generateOTP();
+
+    await sendMail(email, subject, `Your OTP is: ${generatedOTP}. Please do not share it with others.`);
+
+    await OTP.findOneAndUpdate(
+        { email },
+        { $push: { otp: generatedOTP }, createdAt: new Date() },
+        { new: true, upsert: true }  /* so 'upsert' is using because the otp im sending to an email does not exists in database, that's why I am using upsert
+        */
+    );
+
+    return generatedOTP;
+};
+
+export { sendOtpToEmail };
