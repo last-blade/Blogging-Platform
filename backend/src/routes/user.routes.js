@@ -8,6 +8,9 @@ import { updateEmail } from "../controllers/userControllers/updateEmail.controll
 import { sendOTP } from "../controllers/userControllers/sendOTP.controller.js";
 import { verifyOTP } from "../controllers/userControllers/verifyOTP.controller.js";
 import { updateUsername } from "../controllers/userControllers/updateUsername.controller.js";
+import { sendForgotPasswordOTP } from "../controllers/userControllers/sendForgotPasswordOTP.controller.js";
+import { forgotPassword } from "../controllers/userControllers/forgotPassword.controller.js";
+import { verifyForgotPasswordOTP } from "../controllers/userControllers/verifyForgotPasswordOTP .controller.js";
 
 const router = Router();
 
@@ -19,9 +22,14 @@ router.route("/logout").post(authentication, logoutUser);
 router.route("/send-otp").post(sendOTP);
 router.route("/verify-otp").post(verifyOTP);
 
-//Update controllers
+//Update Routes
 router.route("/update-fullname").patch(authentication, updateName);
 router.route("/update-email").patch(authentication, updateEmail);
 router.route("/update-username").patch(authentication, updateUsername);
+
+//Resetting Password
+router.route("/send-forgot-password-otp").post(sendForgotPasswordOTP);
+router.route("/verify-forgot-password-otp").post(verifyForgotPasswordOTP);
+router.route("/forgot-password").patch(forgotPassword);
 
 export default router;
