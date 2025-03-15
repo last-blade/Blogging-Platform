@@ -1,44 +1,21 @@
-import { request } from "express";
 import { apiError, apiResponse, asyncHandler } from "../allImports.js";
-import { sendMail } from "../../utils/sendEmail.js";
 import { OTP } from "../../models/otp.model.js";
-
-const generateOTP = () => {
-    const generatedOTP = Math.floor(1000 + Math.random() * 9000);
-    return generatedOTP;
-}
+import { sendOtpToEmail } from "../../utils/sendOtpToEmail.js";
 
 const sendOTP = asyncHandler(async (request, response) => {
-    const {email} = request.body;
+    const { email } = request.body;
 
-    const existingOTP = await OTP.findOne({email: email});
-
-    if(existingOTP){
-        throw new apiError(429, "Please wait before requesting a new OTP.")
-    }
-
-    const generatedOTP = generateOTP();
-
-    await sendMail(email, "Your Email OTP for registration on PixelPen", `Please find your One Time Password (OTP) ${generatedOTP} and Please don't share this OTP with others.`)
-
-    await OTP.findOneAndUpdate(
-        { email },
-        { $push: { otp: generatedOTP }, createdAt: new Date() },
-        { new: true, upsert: true } /* so 'upsert' is using because the otp im sending to an email does not exists in database, that's why I am using upsert
-        */
-    );
+    await sendOtpToEmail(email, "Your Email OTP for registration on PixelPen");
 
     const options = {
         httpOnly: true,
         secure: true,
         maxAge: 5 * 60 * 1000,
-    }
-    
+    };
+
     return response.status(200)
-    .cookie("Email", email, options)
-    .json(
-        new apiResponse(200, {}, "OTP sent successfully.")
-    );
+        .cookie("Email", email, options)
+        .json(new apiResponse(200, {}, "OTP sent successfully."));
 });
 
 export {sendOTP}
