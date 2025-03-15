@@ -21,14 +21,18 @@ app.use(express.static("public"));
 
 
 //importing routes
-import userRouter from "./routes/user.routes.js"
-import blogRouter from "./routes/blog.routes.js"
+import userRouter from "./routes/user.routes.js";
+import blogRouter from "./routes/blog.routes.js";
+import commentRouter from "./routes/comment.routes.js";
 
 //User-Routes
 app.use("/api/v1/user", userRouter);
 
 //Blog-Routes
-app.use("/api/v1/blog", blogRouter)
+app.use("/api/v1/blog", blogRouter);
+
+//Comment-Routes
+app.use("/api/v1/comment", commentRouter);
 
 
 export { app }
