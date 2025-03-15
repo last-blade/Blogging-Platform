@@ -9,7 +9,7 @@ const router = Router();
 
 router.route("/create-comment").post(authentication, createComment);
 router.route("/fetch-comments").get(fetchComments);
-router.route("/get-total-likes-and-who-liked").get(getTotalLikesAndWhoLikedComment);
+router.route("/get-total-likes-and-who-liked-comment").get(getTotalLikesAndWhoLikedComment);
 router.route("like-comment").post(authentication, likeComment);
 
 export default router;
