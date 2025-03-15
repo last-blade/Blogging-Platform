@@ -1,30 +1,22 @@
-import { OTP } from "../../models/otp.model.js";
+import { verifyOtpHelper } from "../../utils/verifyOtpHelper.js";
 import { apiError, apiResponse, asyncHandler } from "../allImports.js";
 
 const verifyOTP = asyncHandler(async (request, response) => {
-    const {otp} = request.body;
+    const {incomingOTP} = request.body;
     const email = request.cookies.Email;
-    
-    if(!otp){
+
+    if(!incomingOTP){
         throw new apiError(400, "OTP is required.")
     }
+    
+    const isOtpValid = await verifyOtpHelper(email, incomingOTP);
 
-    const foundUser = await OTP.findOne({email});
-
-    if(!foundUser){
-        throw new apiError(400, "OTP expired, send OTP again.")
+    if(isOtpValid){
+        return response.status(200)
+        .json(
+            new apiResponse(200, {}, "OTP Verified.")
+        )
     }
-
-    const databaseOTP = foundUser.otp[0];
-
-    if(otp !== databaseOTP){
-        throw new apiError(400, "Incorrect OTP.")
-    }
-
-    return response.status(200)
-    .json(
-        new apiResponse(200, {}, "OTP verified.")
-    )
     
 });
 
