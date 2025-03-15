@@ -3,7 +3,7 @@ import { OTP } from "../models/otp.model.js";
 
 const verifyOtpHelper = async (incomingEmail, incomingOTP) => {
 
-    const foundUser = await OTP.findOne({incomingEmail});
+    const foundUser = await OTP.findOne({email: incomingEmail});
 
     if(!foundUser){
         throw new apiError(400, "OTP expired, send OTP again.")
