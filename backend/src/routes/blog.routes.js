@@ -7,12 +7,19 @@ import { editBlog } from "../controllers/blogControllers/editBlog.controller.js"
 import { likeBlog } from "../controllers/blogControllers/likeBlog.controller.js";
 import { getTotalLikesAndWhoLikedBlog } from "../controllers/blogControllers/getTotalLikesAndWhoLikedBlog.controller.js";
 import { deleteBlog } from "../controllers/blogControllers/deleteBlog.controller.js";
+import { viewBlog } from "../controllers/blogControllers/viewBlog.controller.js";
 
 const router = Router();
 
+//Create Routes
 router.route("/create-blog").post(authentication, createBlog);
+
+//Fetch Routes
 router.route("/fetch-user-blogs").get(authentication, fetchBlog);
 router.route("/fetch-all-blogs").get(fetchAllUsersBlogs);
+router.route("/view-blog/:blogId").get(viewBlog);
+
+//Like Routes
 router.route("/like-blog/:blogId").post(authentication, likeBlog);
 router.route("/get-total-likes-and-who-liked-blog").get(getTotalLikesAndWhoLikedBlog);
 
