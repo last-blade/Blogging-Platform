@@ -12,21 +12,12 @@ const likeBlog = asyncHandler(async (request, response) => {
 
     if(!userId){
         throw new apiError(400, "Please login!")
-    }
-
-    const isLiked = await Like.findById(userId, { 
-        $and: [
-            {likedBy: userId},  
-            {likeBlog: blogId}
-        ]
-    });
-                //OR    
-    /*
+    } 
+    
     const isLiked = await Like.findOne({
         likedBlog: blogId,
         likedBy: userId
     });
-    */
 
     if(isLiked){
         await Like.findOneAndDelete({
@@ -41,8 +32,6 @@ const likeBlog = asyncHandler(async (request, response) => {
             new apiResponse(200, {}, "Blog unliked.")
         )
     };
-
-    
 
     await Like.create({
         likedBlog: blogId,
