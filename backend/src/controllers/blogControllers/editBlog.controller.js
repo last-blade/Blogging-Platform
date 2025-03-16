@@ -3,7 +3,9 @@ import { apiError, apiResponse, asyncHandler } from "../allImports.js";
 
 const editBlog = asyncHandler(async (request, response) => {
     try {
-        const {blogId, blogContent} = request.body
+        const {blogContent} = request.body
+
+        const {blogId} = request.params;
         
         if(!blogId){
             throw new apiError(400, "Blog ID is required!");
