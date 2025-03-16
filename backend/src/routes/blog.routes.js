@@ -21,7 +21,7 @@ router.route("/view-blog/:blogId").get(viewBlog);
 
 //Like Routes
 router.route("/like-blog/:blogId").post(authentication, likeBlog);
-router.route("/get-total-likes-and-who-liked-blog").get(getTotalLikesAndWhoLikedBlog);
+router.route("/get-total-likes-and-who-liked-blog/:blogId").get(getTotalLikesAndWhoLikedBlog);
 
 //Update Routes
 router.route("/edit-blog/:blogId").patch(authentication, editBlog);
