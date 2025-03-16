@@ -1,5 +1,6 @@
+import mongoose from "mongoose";
 import { Like } from "../../models/like.model.js";
-import { apiError, asyncHandler } from "../allImports.js";
+import { apiError, apiResponse, asyncHandler } from "../allImports.js";
 
 const getTotalLikesAndWhoLikedBlog = asyncHandler(async (request, response) => {
     // ab hum yahan par karenge ki, We want to find all likes related to a specific blog, so we'll match "likedBlog" with "blogId".
@@ -8,11 +9,15 @@ const getTotalLikesAndWhoLikedBlog = asyncHandler(async (request, response) => {
     if(!blogId){
         throw new apiError(400, "Blog does not exists or reload the page!")
     }
+
+    const blogObjectId = new mongoose.Types.ObjectId(blogId); // Convert blogId to ObjectId
+    const checkLikes = await Like.find();
+console.log(checkLikes);
     const totalLikes = await Like.aggregate([
         //pipeline-1
         {
             $match: {
-                likedBlog: blogId, // "likedBlog" yeh field name same hona chahiye jo like model mein likha hau hai
+                likedBlog: blogObjectId, // "likedBlog" yeh field name same hona chahiye jo like model mein likha hau hai
             }
         },
 
@@ -33,7 +38,7 @@ const getTotalLikesAndWhoLikedBlog = asyncHandler(async (request, response) => {
         {
             $lookup: {
                 from: "users",
-                localField: "$whoLikedBlog",
+                localField: "whoLikedBlog",
                 foreignField: "_id",
                 as: "userDetails",
             }
@@ -51,14 +56,24 @@ const getTotalLikesAndWhoLikedBlog = asyncHandler(async (request, response) => {
             We'll hide unnecessary fields and only show total likes and user details. ✅
         */
 
-        {
-            $project: { //see comment-2
-                _id: 0,
-                whoLikedBlog: 1,
-                userDetails: 1,
+            {
+                $project: { //see comment-2
+                    _id: 0, 
+                    totalLikes: 1,
+                    userDetails: {
+                        _id: 1,
+                        fullname: 1,
+                        username: 1
+                    }
+                }
             }
-        }
+            
     ])
+
+    return response.status(200)
+    .json(
+        new apiResponse(200, totalLikes, "Total likes and who liked, fetched successfully")
+    );
 });
 
 export {getTotalLikesAndWhoLikedBlog}
