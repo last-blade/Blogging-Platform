@@ -11,6 +11,7 @@ import { updateUsername } from "../controllers/userControllers/updateUsername.co
 import { sendForgotPasswordOTP } from "../controllers/userControllers/sendForgotPasswordOTP.controller.js";
 import { forgotPassword } from "../controllers/userControllers/forgotPassword.controller.js";
 import { verifyForgotPasswordOTP } from "../controllers/userControllers/verifyForgotPasswordOTP .controller.js";
+import { changePassword } from "../controllers/userControllers/changePassord.controller.js";
 
 const router = Router();
 
@@ -31,5 +32,6 @@ router.route("/update-username").patch(authentication, updateUsername);
 router.route("/send-forgot-password-otp").post(sendForgotPasswordOTP);
 router.route("/verify-forgot-password-otp").post(verifyForgotPasswordOTP);
 router.route("/forgot-password").patch(forgotPassword);
+router.route("/change-password").patch(authentication, changePassword);
 
 export default router;
