@@ -1,3 +1,4 @@
+import { Blog } from "../../models/blog.model.js";
 import {apiError, apiResponse, asyncHandler, User} from "../allImports.js"
 
 const deleteBlog = asyncHandler(async (request, response) => {
@@ -23,11 +24,13 @@ const deleteBlog = asyncHandler(async (request, response) => {
         throw new apiError(404, "Blog does not exists!")
     }
 
-    await User.findByIdAndDelete(userId, {
+    await User.findByIdAndUpdate(userId, {
         $pull: {
             blog: blogId // blogs jo hain array form mein store hain, isliye hu "pull" operaor kaa use karenge, agar object wagreah mein hota toh fir "unset" operator kaa use karte.
         }
     }, {new: true});
+
+    await Blog.findByIdAndDelete(blogId);
 
     return response.status(200)
     .json(
