@@ -53,10 +53,10 @@ export default function Home() {
           <a href="/" className="flex items-center gap-2">
             <div className="relative w-8 h-8 overflow-hidden rounded-full bg-primary">
               <div className="absolute inset-0 flex items-center justify-center text-lg font-bold text-primary-foreground">
-                B
+                P
               </div>
             </div>
-            <span className="text-xl font-bold">Blogify</span>
+            <span className="text-xl font-bold">PixelPen</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -510,10 +510,10 @@ export default function Home() {
               <a href="/" className="flex items-center gap-2 mb-4">
                 <div className="relative w-8 h-8 overflow-hidden rounded-full bg-primary">
                   <div className="absolute inset-0 flex items-center justify-center text-lg font-bold text-primary-foreground">
-                    B
+                    P
                   </div>
                 </div>
-                <span className="text-xl font-bold">Blogify</span>
+                <span className="text-xl font-bold">PixelPen</span>
               </a>
               <p className="text-sm text-muted-foreground mb-4">
                 A modern platform for writers and readers to connect, create, and discover amazing content.
@@ -681,7 +681,7 @@ export default function Home() {
           </div>
 
           <div className="mt-12 pt-8 border-t text-center text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} Blogify. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} PixelPen. All rights reserved.</p>
           </div>
         </div>
       </footer>
