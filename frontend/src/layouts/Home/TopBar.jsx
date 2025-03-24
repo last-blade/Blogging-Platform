@@ -1,7 +1,8 @@
-import { Menu, Search } from 'lucide-react'
+import { Menu, Moon, Search, X } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Input } from "../../components/ui/Input"
 import { Button } from "../../components/ui/Button"
+import { motion } from 'framer-motion'
 
 function TopBar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -55,6 +56,7 @@ function TopBar() {
               />
             </div>
             <Button size="sm">Sign In</Button>
+            <Moon size={20}/>
           </div>
 
           {/* Mobile Menu Button */}
@@ -90,8 +92,7 @@ function TopBar() {
                   About
                 </a>
               </nav>
-              <Button className="w-full">Sign In</Button>
-              <Moon size={20}/>
+              <Button className="w-full">Login</Button>
             </div>
           </motion.div>
         )}
