@@ -8,7 +8,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Home Page with HomeLayout */}
         <Route 
           path="/" 
           element={
