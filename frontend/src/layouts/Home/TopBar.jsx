@@ -67,9 +67,9 @@ function TopBar() {
               />
             </div>
             <Button size="sm">Sign In</Button>
-            <div className='flex gap-7 bg-primary text-primary-foreground hover:bg-primary/90 p-2 rounded-full'>
+            <div className='flex gap-7 items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 p-2 rounded-full'>
             {
-              isDarkMode == true 
+              isDarkMode == false 
               ? 
               <div className='bg-white w-6 h-6 flex justify-center items-center rounded-2xl' onClick={handleDarkMode}>
                 <Moon size={15} className='cursor-pointer text-black rounded-2xl'/>
