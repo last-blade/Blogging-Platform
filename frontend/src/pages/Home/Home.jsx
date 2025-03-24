@@ -1,9 +1,5 @@
-"use client"
-
-import { useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, ChevronDown, X } from "lucide-react"
-
 import { Button } from "../../components/ui/Button"
 import { Input } from "../../components/ui/Input"
 import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/Avatar"
