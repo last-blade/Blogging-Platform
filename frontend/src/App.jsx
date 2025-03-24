@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { blogApi } from './apiService/apiService'
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomeLayout from './layouts/Home/HomeLayout'; 
 import Home from './pages/Home/Home';
 
 function App() {
-  // const [blogs, setBlogs] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchBlogs = async () => {
-  //     try {
-  //       const res = await blogApi.fetchAllBlogs();
-  //       console.log("data", res.data)
-  //       setBlogs(res.data.data);
-  //     } catch (error) {
-  //       console.error("Error fetching blogs:", error);
-  //     }
-  //   }
-  //   fetchBlogs();
-  // }, [])
-
   return (
-    <div>
-      <Home />
-    </div>
-  )
+    <Router>
+      <Routes>
+        {/* Home Page with HomeLayout */}
+        <Route 
+          path="/" 
+          element={
+            <HomeLayout>
+              <Home />
+            </HomeLayout>
+          } 
+        />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
