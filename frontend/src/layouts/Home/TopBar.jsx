@@ -1,19 +1,30 @@
-import { Menu, Moon, Search, X } from 'lucide-react'
+import { Menu, Moon, Search, Sun, X } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { Input } from "../../components/ui/Input"
 import { Button } from "../../components/ui/Button"
 import { motion } from 'framer-motion'
 
 function TopBar() {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isDarkMode, setDarkMode] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     useEffect(() => {
     const handleScroll = () => {
         setIsScrolled(window.scrollY > 10)
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
-    const [isScrolled, setIsScrolled] = useState(false)
+    }, []);
+
+    const handleDarkMode = () => {
+      if(isDarkMode == true){
+        setDarkMode(false)
+      }
+      else{
+        setDarkMode(true)
+      }
+    }
+
   return (
     <div>
       <header
@@ -56,7 +67,19 @@ function TopBar() {
               />
             </div>
             <Button size="sm">Sign In</Button>
-            <Moon size={20}/>
+            <div className='flex gap-7 bg-primary text-primary-foreground hover:bg-primary/90 p-2 rounded-full'>
+            {
+              isDarkMode == true 
+              ? 
+              <div className='bg-white w-6 h-6 flex justify-center items-center rounded-2xl' onClick={handleDarkMode}>
+                <Moon size={15} className='cursor-pointer text-black rounded-2xl'/>
+              </div>
+              :
+              <div className='bg-white w-6 h-6 flex justify-center items-center rounded-2xl' onClick={handleDarkMode}>
+                <Sun size={15} className='cursor-pointer text-black rounded-2xl'/>
+              </div>
+            }
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
