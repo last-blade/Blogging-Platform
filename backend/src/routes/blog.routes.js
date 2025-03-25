@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { authentication } from "../middlewares/authentication.middleware.js";
 import { createBlog } from "../controllers/blogControllers/createBlog.controller.js";
-import { fetchBlog } from "../controllers/blogControllers/fetchBlog.controllers.js";
+import { fetchBlog } from "../controllers/blogControllers/fetchBlog.controller.js";
 import { fetchAllUsersBlogs } from "../controllers/blogControllers/fetchAllUsersBlogs.controller.js";
 import { editBlog } from "../controllers/blogControllers/editBlog.controller.js";
 import { likeBlog } from "../controllers/blogControllers/likeBlog.controller.js";
