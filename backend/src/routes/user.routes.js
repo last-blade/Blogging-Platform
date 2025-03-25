@@ -12,6 +12,8 @@ import { sendForgotPasswordOTP } from "../controllers/userControllers/sendForgot
 import { forgotPassword } from "../controllers/userControllers/forgotPassword.controller.js";
 import { verifyForgotPasswordOTP } from "../controllers/userControllers/verifyForgotPasswordOTP .controller.js";
 import { changePassword } from "../controllers/userControllers/changePassord.controller.js";
+import { getTotalFollwers } from "../controllers/userControllers/getTotalFollowers.controller.js";
+import { follow } from "../controllers/userControllers/follow.controller.js";
 
 const router = Router();
 
@@ -28,10 +30,14 @@ router.route("/update-fullname").patch(authentication, updateName);
 router.route("/update-email").patch(authentication, updateEmail);
 router.route("/update-username").patch(authentication, updateUsername);
 
-//Resetting Password
+//Resetting Passowrd Routes
 router.route("/send-forgot-password-otp").post(sendForgotPasswordOTP);
 router.route("/verify-forgot-password-otp").post(verifyForgotPasswordOTP);
 router.route("/forgot-password").patch(forgotPassword);
 router.route("/change-password").patch(authentication, changePassword);
+
+//Followers Routes
+router.route("/follow/:whomToFollowUserId").post(authentication, follow)
+router.route("/get-total-followers").get(getTotalFollwers);
 
 export default router;

@@ -4,8 +4,10 @@ import { apiError, apiResponse, asyncHandler, User } from "../allImports.js";
 const follow = asyncHandler(async (request, response) => {
     try {
             const userId = request?.user.id;
-            const whomToFollowUserId = request?.params._id;
-            const foundUser = await User.findById(userId);
+
+            const {whomToFollowUserId} = request.params;
+
+            const foundUser = await User.findById(userId).select("-password -refreshToken");
         
             if(!foundUser){
                 throw new apiError(404, "User not found, login again.")
@@ -15,7 +17,7 @@ const follow = asyncHandler(async (request, response) => {
                 throw new apiError(404, "User does not exists.")
             }
 
-            const whomToFollowUser = await User.findById(whomToFollowUserId);
+            const whomToFollowUser = await User.findById(whomToFollowUserId).select("-password -refreshToken");
 
             if(!whomToFollowUser){
                 throw new apiError(404, "User to follow does not exists.")
@@ -29,6 +31,8 @@ const follow = asyncHandler(async (request, response) => {
                 followedTo: whomToFollowUserId,
                 followedBy: userId,
             });
+
+            console.log("exists", existingFollow)
         
             if (existingFollow) {
                 throw new apiError(400, "You are already following this user.");
@@ -46,8 +50,10 @@ const follow = asyncHandler(async (request, response) => {
                 new apiResponse(200, {}, "Followed Successfully.")
             )
     } catch (error) {
-       throw new apiError(500, "Something went wrong!") 
-    }
+        return response.status(error.statusCode || 500).json(
+            new apiResponse(error.statusCode || 500, {}, error.message || "Something went wrong!")
+        );
+     }
 });
 
 export  {follow}
