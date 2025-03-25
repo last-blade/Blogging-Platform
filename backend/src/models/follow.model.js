@@ -1,15 +1,17 @@
-import mongoose, { Schema } from "mongosoe";
+import mongoose, { Schema } from "mongoose";
 
 const followSchema = new Schema({
-        followeTo: {
+        followedTo: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
+            required: true,
         },
 
         followedBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
+            required: true,
         },
 }, {timestamps: true});
 
-export const Follow = mongoose.mode("Follow", followSchema);
+export const Follow = mongoose.model("Follow", followSchema);
