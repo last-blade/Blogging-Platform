@@ -4,9 +4,9 @@ import mongoose from "mongoose";
 
 const getTotalFollwers = asyncHandler(async (request, response) => {
     const userId = request.params.userId?.toString();
-console.log("userid", userId)
+
     const foundUser = await User.findById(userId);
-    console.log(foundUser)
+    
     if(!foundUser){
         throw new apiError(404, "User not found, login again.")
     }
