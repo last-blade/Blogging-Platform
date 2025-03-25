@@ -23,6 +23,8 @@ const blogSchema = new Schema({
         }
     ],
 
-}, {timestamps: true})
+}, {timestamps: true});
+
+blogSchema.index({ blogrelatedTo: 1 });
 
 export const Blog = mongoose.model("Blog", blogSchema);

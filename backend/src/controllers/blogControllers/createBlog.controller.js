@@ -3,11 +3,18 @@ import { apiError, apiResponse, asyncHandler, User } from "../allImports.js";
 
 const createBlog = asyncHandler(async (request, response) => {
     try {
-        const {blogName, blogContent} = request.body;
+        const {blogName, blogContent, category} = request.body;
+
+        if(![blogName, blogContent, category]){
+            throw new apiError(404, "All fields are required.")
+        }
+
+        const categories = Array.isArray(category) ? category : category.split(",").map(cat => cat.trim());
 
         const createdBlog = await Blog.create({
             blogName,
             blogContent,
+            blogrelatedTo: categories,
             blogOwner: request?.user.id,
         });
 
