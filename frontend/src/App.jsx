@@ -3,6 +3,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeLayout from './layouts/Home/HomeLayout'; 
 import Home from './pages/Home/Home';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+import UserDashboard from './layouts/Dashboard/UserDashboard';
+import UserHome from './pages/Home/UserHome';
 
 function App() {
   return (
@@ -16,6 +20,13 @@ function App() {
             </HomeLayout>
           } 
         />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register/>} />
+        <Route path="/home" element={
+              <UserDashboard>
+                <UserHome />
+              </UserDashboard>
+        } />
       </Routes>
     </Router>
   );

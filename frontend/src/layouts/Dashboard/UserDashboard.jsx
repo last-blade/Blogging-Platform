@@ -1,8 +1,12 @@
 import React from 'react'
+import TopBar from './TopBar'
 
-function UserDashboard() {
+function UserDashboard({children}) {
   return (
-    <div>UserDashboard</div>
+    <div>
+      <TopBar />
+      {children}
+    </div>
   )
 }
 

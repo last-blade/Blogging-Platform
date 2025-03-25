@@ -338,7 +338,7 @@ export default function Home() {
               {[
                 {
                   quote:
-                    "Blogify has transformed the way I share my ideas. The platform is intuitive, and the community is incredibly supportive.",
+                    "PixelPen has transformed the way I share my ideas. The platform is intuitive, and the community is incredibly supportive.",
                   author: "Jessica Miller",
                   role: "Travel Blogger",
                 },

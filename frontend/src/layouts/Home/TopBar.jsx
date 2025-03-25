@@ -1,13 +1,15 @@
-import { Menu, Moon, Search, Sun, X } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
-import { Input } from "../../components/ui/Input"
-import { Button } from "../../components/ui/Button"
-import { motion } from 'framer-motion'
+import { Menu, Moon, Search, Sun, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Input } from "../../components/ui/Input";
+import { Button } from "../../components/ui/Button";
+import { motion } from 'framer-motion';
+import { useNavigate } from "react-router-dom";
 
 function TopBar() {
+  const navigate = useNavigate();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isDarkMode, setDarkMode] = useState(() => {
-      return localStorage.getItem("theme") === "dark"; // Retrieve theme from localStorage
+      return localStorage.getItem("theme") === "dark"; 
     });
     const [isScrolled, setIsScrolled] = useState(false);
     useEffect(() => {
@@ -73,7 +75,7 @@ function TopBar() {
                 className="pl-9 w-[200px] lg:w-[300px] h-9 rounded-full bg-muted"
               />
             </div>
-            <Button size="sm">Sign In</Button>
+            <Button size="sm" onClick={() => navigate("/login")}>Sign In</Button>
             <div className="flex gap-7 items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 p-2 rounded-full">
               <div className="bg-white w-6 h-6 flex justify-center items-center rounded-2xl" onClick={handleDarkMode}>
                   {isDarkMode ? <Sun size={15} className="cursor-pointer text-black rounded-2xl"/> : <Moon size={15} className="cursor-pointer text-black rounded-2xl"/>}
@@ -114,7 +116,7 @@ function TopBar() {
                   About
                 </a>
               </nav>
-              <Button className="w-full">Login</Button>
+              <Button className="w-full" onClick={() => navigate("/login")}>Sign In</Button>
             </div>
           </motion.div>
         )}
