@@ -1,11 +1,12 @@
 import { apiError, apiResponse, asyncHandler, User } from "../allImports.js";
 import { Follow } from "../../models/follow.model.js"
+import mongoose from "mongoose";
 
 const getTotalFollwers = asyncHandler(async (request, response) => {
-    const userId = request?.user.id;
-
+    const userId = request.params.userId?.toString();
+console.log("userid", userId)
     const foundUser = await User.findById(userId);
-
+    console.log(foundUser)
     if(!foundUser){
         throw new apiError(404, "User not found, login again.")
     }
@@ -15,7 +16,7 @@ const getTotalFollwers = asyncHandler(async (request, response) => {
         //first-pipeline
         {
             $match: {
-                followedTo: userId,
+                followedTo: new mongoose.Types.ObjectId(userId),
             }
         },
         //second-pipeline
@@ -37,8 +38,13 @@ const getTotalFollwers = asyncHandler(async (request, response) => {
                 as: "followerDetails"
             }
         },
-
+        
         //fourth-pipeline
+        { 
+            $unwind: "$followerDetails" 
+        },
+
+        //fifth-pipeline
         {
             $project: {
                 _id: 0,

@@ -38,6 +38,6 @@ router.route("/change-password").patch(authentication, changePassword);
 
 //Followers Routes
 router.route("/follow/:whomToFollowUserId").post(authentication, follow)
-router.route("/get-total-followers").get(getTotalFollwers);
+router.route("/get-total-followers/:userId").get(getTotalFollwers);
 
 export default router;
