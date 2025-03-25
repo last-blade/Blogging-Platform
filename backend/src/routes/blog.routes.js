@@ -8,6 +8,7 @@ import { likeBlog } from "../controllers/blogControllers/likeBlog.controller.js"
 import { getTotalLikesAndWhoLikedBlog } from "../controllers/blogControllers/getTotalLikesAndWhoLikedBlog.controller.js";
 import { deleteBlog } from "../controllers/blogControllers/deleteBlog.controller.js";
 import { viewBlog } from "../controllers/blogControllers/viewBlog.controller.js";
+import { getTotalBlogsCount } from "../controllers/blogControllers/getTotalBlogsCount.controller.js";
 
 const router = Router();
 
@@ -18,6 +19,7 @@ router.route("/create-blog").post(authentication, createBlog);
 router.route("/fetch-user-blogs").get(authentication, fetchBlog);
 router.route("/fetch-all-blogs").get(fetchAllUsersBlogs);
 router.route("/view-blog/:blogId").get(viewBlog);
+router.route("/total-blogs").get(authentication, getTotalBlogsCount);
 
 //Like Routes
 router.route("/like-blog/:blogId").post(authentication, likeBlog);
