@@ -20,6 +20,7 @@ const blogSchema = new Schema({
         {
             type: String,
             required: true,
+            set: (value) => value.toLowerCase(),
         }
     ],
 
