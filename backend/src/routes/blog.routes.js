@@ -11,6 +11,7 @@ import { viewBlog } from "../controllers/blogControllers/viewBlog.controller.js"
 import { getTotalBlogsCount } from "../controllers/blogControllers/getTotalBlogsCount.controller.js";
 import { getCategorizedBlogsCount } from "../controllers/blogControllers/getCategorizedBlogsCount.controller.js";
 import { getBlogsByCategory } from "../controllers/blogControllers/getBlogsByCategory.controller.js";
+import { fetchSavedBlogs } from "../controllers/blogControllers/fetchSavedBlogs.controller.js";
 
 const router = Router();
 
@@ -24,6 +25,7 @@ router.route("/view-blog/:blogId").get(viewBlog);
 router.route("/total-blogs").get(authentication, getTotalBlogsCount);
 router.route("/blogs/:category").get(getBlogsByCategory);
 router.route("/blogs-category-count").get(getCategorizedBlogsCount);
+router.route("/saved-blogs").get(authentication, fetchSavedBlogs);
 
 //Like Routes
 router.route("/like-blog/:blogId").post(authentication, likeBlog);
