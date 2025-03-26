@@ -28,7 +28,7 @@ const authentication = asyncHandler(async (request, response, next) => {
             request.user = foundUser;
             next();
     } catch (error) {
-        throw new apiError(404, "PLease login")
+        throw new apiError(404, "Please login")
     }
 });
 
