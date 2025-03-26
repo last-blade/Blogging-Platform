@@ -1,7 +1,7 @@
 import { Blog } from "../../models/blog.model.js";
-import { asyncHandler } from "../allImports.js";
+import { apiResponse, asyncHandler } from "../allImports.js";
 
-const getTotalBlogsCountPerCategory = asyncHandler(async (request, response) => {
+const getCategorizedBlogsCount = asyncHandler(async (request, response) => {
     const totalCountsPerCategory = await Blog.aggregate([
         //yahan par main $unwind use kar raha hoon, to break the "blogrelatedTo" array into separate documents.
         {
@@ -24,7 +24,12 @@ const getTotalBlogsCountPerCategory = asyncHandler(async (request, response) => 
                 totalBlogs: 1
             }
         },        
-    ])
+    ]);
+
+    return response.status(200)
+    .json(
+        new apiResponse(200, totalCountsPerCategory, "Categorized blogs count fetched successfully.")
+    );
 });
 
-export {getTotalBlogsCountPerCategory};
+export {getCategorizedBlogsCount};
