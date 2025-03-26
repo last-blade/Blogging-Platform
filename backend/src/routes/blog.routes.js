@@ -9,6 +9,7 @@ import { getTotalLikesAndWhoLikedBlog } from "../controllers/blogControllers/get
 import { deleteBlog } from "../controllers/blogControllers/deleteBlog.controller.js";
 import { viewBlog } from "../controllers/blogControllers/viewBlog.controller.js";
 import { getTotalBlogsCount } from "../controllers/blogControllers/getTotalBlogsCount.controller.js";
+import { getCategorizedBlogsCount } from "../controllers/blogControllers/getCategorizedBlogsCount.controller.js";
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.route("/fetch-user-blogs").get(authentication, fetchBlog);
 router.route("/fetch-all-blogs").get(fetchAllUsersBlogs);
 router.route("/view-blog/:blogId").get(viewBlog);
 router.route("/total-blogs").get(authentication, getTotalBlogsCount);
+router.route("/blogs/:category").get(getCategorizedBlogsCount);
 
 //Like Routes
 router.route("/like-blog/:blogId").post(authentication, likeBlog);
