@@ -8,6 +8,7 @@ import Register from './pages/Auth/Register';
 import UserDashboard from './layouts/Dashboard/UserDashboard';
 import UserHome from './pages/Home/UserHome';
 import VerifyOTP from './pages/Auth/VerifyOTP';
+import BlogEditorPage from './layouts/Dashboard/BlogEditorPage';
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
               </UserDashboard>
         } />
 
-        <Route path='verify-otp' element={<VerifyOTP />} />
+        <Route path='/verify-otp' element={<VerifyOTP />} />
+        <Route path='/blog-editor' element={<BlogEditorPage />} />
       </Routes>
     </Router>
   );
