@@ -23,6 +23,7 @@ router.route("/fetch-all-blogs").get(fetchAllUsersBlogs);
 router.route("/view-blog/:blogId").get(viewBlog);
 router.route("/total-blogs").get(authentication, getTotalBlogsCount);
 router.route("/blogs/:category").get(getBlogsByCategory);
+router.route("/blogs-category-count").get(getCategorizedBlogsCount);
 
 //Like Routes
 router.route("/like-blog/:blogId").post(authentication, likeBlog);
