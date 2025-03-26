@@ -14,6 +14,7 @@ import { verifyForgotPasswordOTP } from "../controllers/userControllers/verifyFo
 import { changePassword } from "../controllers/userControllers/changePassord.controller.js";
 import { getTotalFollwers } from "../controllers/userControllers/getTotalFollowers.controller.js";
 import { follow } from "../controllers/userControllers/follow.controller.js";
+import { saveBlog } from "../controllers/userControllers/saveBlog.controller.js";
 
 const router = Router();
 
@@ -37,7 +38,10 @@ router.route("/forgot-password").patch(forgotPassword);
 router.route("/change-password").patch(authentication, changePassword);
 
 //Followers Routes
-router.route("/follow/:whomToFollowUserId").post(authentication, follow)
+router.route("/follow/:whomToFollowUserId").post(authentication, follow);
 router.route("/get-total-followers/:userId").get(getTotalFollwers);
+
+//Blog Routes
+router.route("/save-blog/:blogId").post(authentication, saveBlog);
 
 export default router;
