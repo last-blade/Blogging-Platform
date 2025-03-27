@@ -44,6 +44,12 @@ const follow = asyncHandler(async (request, response) => {
             });
         
             await newFollow.save({validateBeforeSave: false});
+
+            foundUser.followers = foundUser.followers + 1;
+
+            console.log(foundUser.followers)
+
+            await foundUser.save({validateBeforeSave: false});
             
             return response.status(200)
             .json(
