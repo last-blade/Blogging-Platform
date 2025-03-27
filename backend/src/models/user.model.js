@@ -53,6 +53,16 @@ const userSchema = new Schema(
         ref: "Blog",
       },
     ],
+
+    followers: {
+      type: Number,
+      default: 0,
+    },
+
+    following: {
+      type: Number,
+      default: 0,
+    }
   },
   { timestamps: true }
 );
