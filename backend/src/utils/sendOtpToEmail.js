@@ -14,7 +14,15 @@ const sendOtpToEmail = async (email, subject) => {
 
     const generatedOTP = generateOTP();
 
-    await sendMail(email, subject, `Your OTP is: ${generatedOTP}. Please do not share it with others.`);
+    const emailBody = `
+    <p>Dear User,</p>
+    <p>Your One-Time Password (OTP) for verification is: <strong>${generatedOTP}</strong></p>
+    <p>Please enter this OTP to complete your process. Do not share this code with anyone for security reasons.</p>
+    <p>This OTP is valid for a limited time. If you did not request this, please ignore this email.</p>
+    <p>Best regards,<br><strong>The PixelPen Team</strong></p>
+    `;
+
+    await sendMail(email, subject, emailBody);
 
     await OTP.findOneAndUpdate(
         { email },

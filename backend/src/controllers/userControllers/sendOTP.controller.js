@@ -5,7 +5,7 @@ import { sendOtpToEmail } from "../../utils/sendOtpToEmail.js";
 const sendOTP = asyncHandler(async (request, response) => {
     const { email } = request.body;
 
-    await sendOtpToEmail(email, "Your Email OTP for registration on PixelPen");
+    await sendOtpToEmail(email, "Your OTP for registration on PixelPen");
 
     const options = {
         httpOnly: true,
