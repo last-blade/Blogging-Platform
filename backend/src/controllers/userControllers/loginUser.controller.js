@@ -8,8 +8,6 @@ const loginUser = asyncHandler(async (request, response) => {
         throw new apiError(404, "Email or Username and Password are required.");
     };
 
-    console.log("Email", email)
-
     const foundUser = await User.findOne({
         $or: [{email}, {username}]
     });
