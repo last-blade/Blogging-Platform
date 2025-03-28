@@ -15,6 +15,7 @@ import { changePassword } from "../controllers/userControllers/changePassord.con
 import { getTotalFollwers } from "../controllers/userControllers/getTotalFollowers.controller.js";
 import { follow } from "../controllers/userControllers/follow.controller.js";
 import { saveBlog } from "../controllers/userControllers/saveBlog.controller.js";
+import { getTopBloggers } from "../controllers/userControllers/getTopBloggers.controller.js";
 
 const router = Router();
 
@@ -43,5 +44,6 @@ router.route("/get-total-followers/:userId").get(getTotalFollwers);
 
 //Blog Routes
 router.route("/save-blog/:blogId").post(authentication, saveBlog);
+router.route("/top-bloggers").get(getTopBloggers);
 
 export default router;
