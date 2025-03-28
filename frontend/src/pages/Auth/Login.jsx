@@ -136,14 +136,14 @@ function Login() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1">
               <Button variant="outline" className="w-full">
-                <Github className="mr-2 h-4 w-4" />
-                Github
-              </Button>
-              <Button variant="outline" className="w-full">
-                <Twitter className="mr-2 h-4 w-4" />
-                Twitter
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  alt="Google"
+                  className="mr-2 h-4 w-4"
+                />
+                Continue with Google
               </Button>
             </div>
 

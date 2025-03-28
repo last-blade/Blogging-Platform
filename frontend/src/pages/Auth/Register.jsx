@@ -16,6 +16,7 @@ import Logo from "../../components/Logo"
 function Register() {
   const [showPassword, setShowPassword] = useState(false)
   const [name, setName] = useState("")
+  const [userName, setUserName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -104,6 +105,24 @@ function Register() {
                     className="pl-10"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-medium">
+                  Username
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder="pixelpen"
+                    className="pl-10"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                     required
                   />
                 </div>
@@ -275,14 +294,14 @@ function Register() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1">
               <Button variant="outline" className="w-full">
-                <Github className="mr-2 h-4 w-4" />
-                Github
-              </Button>
-              <Button variant="outline" className="w-full">
-                <Twitter className="mr-2 h-4 w-4" />
-                Twitter
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  alt="Google"
+                  className="mr-2 h-4 w-4"
+                />
+                Continue with Google
               </Button>
             </div>
 
