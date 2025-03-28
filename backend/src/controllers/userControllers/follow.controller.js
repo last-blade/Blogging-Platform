@@ -35,7 +35,7 @@ const follow = asyncHandler(async (request, response) => {
             console.log("exists", existingFollow)
         
             if (existingFollow) {
-                throw new apiError(400, "You are already following this user.");
+                throw new apiError(400, "Unfollowed Successfully.");
             }
 
             const newFollow = new Follow({
@@ -45,10 +45,10 @@ const follow = asyncHandler(async (request, response) => {
         
             await newFollow.save({validateBeforeSave: false});
 
-            foundUser.followers = foundUser.followers + 1;
-
-            console.log(foundUser.followers)
-
+            foundUser.following = foundUser.following + 1;
+            whomToFollowUser.followers = whomToFollowUser.followers + 1;
+            
+            await whomToFollowUser.save({validateBeforeSave: false});
             await foundUser.save({validateBeforeSave: false});
             
             return response.status(200)
