@@ -1,14 +1,14 @@
 // src/App.jsx
-import React from 'react';
+import React, { lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeLayout from './layouts/Home/HomeLayout'; 
-import Home from './pages/Home/Home';
-import Login from './pages/Auth/Login';
-import Register from './pages/Auth/Register';
-import UserDashboard from './layouts/Dashboard/UserDashboard';
-import UserHome from './pages/Home/UserHome';
-import VerifyOTP from './pages/Auth/VerifyOTP';
-import BlogEditorPage from './layouts/Dashboard/BlogEditorPage';
+const Home = lazy(() => import('./pages/Home/Home'));
+const Login = lazy(() => import("./pages/Auth/Login"))
+const Register  = lazy(() => import("./pages/Auth/Register"));
+const UserDashboard = lazy(() => import("./layouts/Dashboard/UserDashboard"));
+const UserHome = lazy(() => import("./pages/Home/UserHome"));
+const VerifyOTP = lazy(() => import("./pages/Auth/VerifyOTP"));
+const BlogEditorPage = lazy(() => import("./layouts/Dashboard/BlogEditorPage"))
 
 function App() {
   return (
