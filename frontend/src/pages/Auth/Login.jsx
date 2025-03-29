@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Eye, EyeOff, ArrowRight, Mail, Lock, Github, Twitter } from 'lucide-react'
-
+import { Eye, EyeOff, Mail, Lock, } from 'lucide-react'
+import { useNavigate } from "react-router-dom"; 
+import { loginUser } from "../../api/authApi";
 import { Button } from "../../components/ui/Button"
 import { Input } from "../../components/ui/Input"
 import { Card, CardContent } from "../../components/ui/Card"
@@ -11,15 +12,35 @@ import Logo from "../../components/Logo"
 
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [rememberMe, setRememberMe] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log({ email, password, rememberMe })
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await loginUser({ 
+        email: identifier.includes("@") ? identifier : undefined, 
+        username: identifier.includes("@") ? undefined : identifier, 
+        password 
+      });
+
+      document.cookie = `token=${response.data.token}; path=/`;
+
+      navigate("/home");
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -28,7 +49,7 @@ function Login() {
       y: 0,
       transition: { duration: 0.6 }
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-background/80 p-4">
@@ -50,22 +71,23 @@ function Login() {
           <CardContent className="pt-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium">
-                  Email
+                <label htmlFor="identifier" className="text-sm font-medium">
+                  Email or Username
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="name@example.com" 
+                    id="identifier" 
+                    type="text" 
+                    placeholder="email or username" 
                     className="pl-10"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
                     required
                   />
                 </div>
               </div>
+
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -120,9 +142,10 @@ function Login() {
                 </label>
               </div>
 
-              <Button type="submit" className="w-full">
-                Sign in
+              <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Signing in..." : "Sign in"}
               </Button>
+              {error && <p className="text-red-500 text-center">{error}</p>}
             </form>
 
             <div className="relative my-6">
