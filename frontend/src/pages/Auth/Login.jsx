@@ -32,6 +32,7 @@ function Login() {
         password 
       });
 
+      console.log("response", response);
       document.cookie = `token=${response.data.token}; path=/`;
 
       navigate("/home");
