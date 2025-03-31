@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { motion } from "framer-motion";
 import HomeLayout from './layouts/Home/HomeLayout'; 
 import Logo from './components/Logo';
+import Explore from './pages/Home/Explore';
 const Home = lazy(() => import('./pages/Home/Home'));
 const Login = lazy(() => import("./pages/Auth/Login"))
 const Register  = lazy(() => import("./pages/Auth/Register"));
@@ -50,6 +51,11 @@ function App() {
 
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/blog-editor" element={<BlogEditorPage />} />
+          <Route path="/explore" element={
+            <HomeLayout>
+              <Explore />
+            </HomeLayout>
+          }/>
         </Routes>
       </Suspense>
     </Router>
