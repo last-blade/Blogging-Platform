@@ -35,6 +35,22 @@ const follow = asyncHandler(async (request, response) => {
             console.log("exists", existingFollow)
         
             if (existingFollow) {
+                await Follow.findOneAndDelete({
+                    followedTo: whomToFollowUser,
+                    followedBy: userId,
+                });
+
+                if (foundUser.following > 0) {
+                    foundUser.following -= 1;
+                    await foundUser.save({ validateBeforeSave: false });
+                }
+                
+                if (whomToFollowUser.followers > 0) {
+                    whomToFollowUser.followers -= 1;
+                    console.log("darshana followers", whomToFollowUser.followers)
+                    await whomToFollowUser.save({ validateBeforeSave: false });
+                }
+                
                 throw new apiError(400, "Unfollowed Successfully.");
             }
 
