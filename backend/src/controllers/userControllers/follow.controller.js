@@ -31,8 +31,6 @@ const follow = asyncHandler(async (request, response) => {
                 followedTo: whomToFollowUserId,
                 followedBy: userId,
             });
-
-            console.log("exists", existingFollow)
         
             if (existingFollow) {
                 await Follow.findOneAndDelete({
@@ -47,7 +45,7 @@ const follow = asyncHandler(async (request, response) => {
                 
                 if (whomToFollowUser.followers > 0) {
                     whomToFollowUser.followers -= 1;
-                    console.log("darshana followers", whomToFollowUser.followers)
+                    // console.log("darshana followers", whomToFollowUser.followers)
                     await whomToFollowUser.save({ validateBeforeSave: false });
                 }
                 
