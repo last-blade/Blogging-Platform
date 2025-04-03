@@ -1,5 +1,5 @@
 import { Blog } from "../../models/blog.model.js";
-import { apiError, apiResponse, asyncHandler } from "../allImports.js";
+import { apiError, apiResponse, asyncHandler, View } from "../allImports.js";
 
 const viewBlog = asyncHandler(async (request, response) => {
     const {blogId} = request.params;
@@ -18,6 +18,21 @@ const viewBlog = asyncHandler(async (request, response) => {
 
     if(!foundBlog){
         throw new apiError(404, "Blog does not exists!")
+    }
+
+    const foundViewedBlog = await View.findOne({
+        blogId,
+        viewedBy: request.user.id,
+    })
+
+    if(!foundViewedBlog){
+        await View.create({
+            blogId,
+            viewedBy: request.user.id,
+        });
+
+        foundBlog.views = foundBlog.views + 1;
+        foundBlog.save({validateBeforeSave: false});
     }
 
     return response.status(200)
