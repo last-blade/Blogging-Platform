@@ -17,6 +17,7 @@ import { follow } from "../controllers/userControllers/follow.controller.js";
 import { saveBlog } from "../controllers/userControllers/saveBlog.controller.js";
 import { getTopBloggers } from "../controllers/userControllers/getTopBloggers.controller.js";
 import { getTotalFollowing } from "../controllers/userControllers/getTotalFollowing.controller.js";
+import { getTotalViewsOfAllBlogs } from "../controllers/userControllers/getTotalViewsOfAllBlogs.controller.js";
 
 const router = Router();
 
@@ -47,5 +48,6 @@ router.route("/total-followings/:randomUserId?").get(authentication, getTotalFol
 //Blog Routes
 router.route("/save-blog/:blogId").post(authentication, saveBlog);
 router.route("/top-bloggers").get(getTopBloggers);
+router.route("/all-blogs-views").get(authentication, getTotalViewsOfAllBlogs)
 
 export default router;
