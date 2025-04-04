@@ -21,7 +21,7 @@ router.route("/create-blog").post(authentication, createBlog);
 //Fetch Routes
 router.route("/fetch-user-blogs").get(authentication, fetchBlog);
 router.route("/fetch-all-blogs").get(fetchAllUsersBlogs);
-router.route("/view-blog/:blogId").get(authentication, viewBlog);
+router.route("/view-blog/:blogId").post(authentication, viewBlog);
 router.route("/total-blogs").get(authentication, getTotalBlogsCount);
 router.route("/blogs/:category").get(getBlogsByCategory);
 router.route("/blogs-category-count").get(getCategorizedBlogsCount);
