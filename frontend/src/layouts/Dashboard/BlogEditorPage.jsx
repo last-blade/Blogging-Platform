@@ -107,6 +107,7 @@ import { ColorSelector } from "../../components/ColorSelector"
 import { TableMenu } from "../../components/TableMenu"
 import { ImageUploader } from "../../components/ImageUploader"
 import { EmojiPicker } from "../../components/EmojiPicker"
+import Logo from "../../components/Logo"
 // import { AIAssistant } from "../../components/ai-assistant"
 // import { TemplateGallery } from "./components/template-gallery"
 // import { CommandMenu } from "./components/command-menu"
@@ -628,11 +629,9 @@ export default function BlogEditorPage() {
             <div className="hidden md:block">
               <a href="/" className="flex items-center gap-2">
                 <div className="relative w-8 h-8 overflow-hidden rounded-full bg-gradient-to-br from-primary to-primary-foreground">
-                  <div className="absolute inset-0 flex items-center justify-center text-lg font-bold text-white">
-                    B
-                  </div>
+                  <Logo />
                 </div>
-                <span className="text-xl font-bold">Blogify</span>
+                <span className="text-xl font-bold">PixelPen</span>
               </a>
             </div>
           </div>
