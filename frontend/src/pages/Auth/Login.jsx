@@ -32,7 +32,7 @@ function Login() {
         password 
       });
       
-      document.cookie = `token=${response.data.token}; path=/`;
+      // document.cookie = `token=${response.data.token}; path=/`;
 
       navigate("/home");
     } catch (err) {
