@@ -92,6 +92,7 @@
 
 **Prashant Tyagi**  
 Full Stack Developer | React | Node.js | MongoDB | Tailwind CSS  
+📧 Email: meprashanttyagi2000@gmail.com  
 Building ideas from scratch 💡
 
 ---
