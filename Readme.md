@@ -99,7 +99,19 @@ Building ideas from scratch 💡
 
 ## ⭐ Support
 
-If you find this project interesting, feel free to **star the repo** and share it with others!
+If you find this project interesting, feel free to **star the repo**!
+
+---
+
+## 📜 License
+
+© 2025 Prashant Tyagi. All rights reserved.
+
+This project is provided for **study and learning purposes only**.
+
+You are welcome to explore the code and learn from it, but **you may NOT use, copy, modify, distribute, or sell** this project or its derivatives without explicit written permission.
+
+No warranties are provided.
 
 ---
 
