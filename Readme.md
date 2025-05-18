@@ -55,7 +55,7 @@
 
 ## 🔌 Setup (Once Stable)
 
-> Setup instructions will be added once frontend-backend integration is stable and tested. For now, you can explore the APIs in the `server` directory.
+> Setup instructions will be added once frontend-backend integration is stable and tested. For now, you can explore the APIs in the directory.
 
 ---
 
